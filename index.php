@@ -12,13 +12,38 @@
 </head>
 <body>
     <div class="login">
-    <form action="login.php">
+    <form action="#" method="POST">
         <p>Usuario</p>
         <input name="usuario" id="usuario" type="text" placeholder="Nombre de usuario" required>
         <p>Contraseña</p>
         <input name="contraseña" id="contraseña" type="text" placeholder="Ingresa tu contraseña" required><br>
         <input type="submit" value="Iniciar sesión">
     </form>
-    </div>
+    
+    <?php
+        session_start();
+        include('conexion.php');
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") { 
+            if (isset($_POST['usuario']) && isset($_POST['contraseña'])) {  
+                $usuario = $_POST['usuario'];
+                $contraseña = $_POST['contraseña'];
+        
+                $sql = "SELECT * FROM usuarios WHERE usuario = '$usuario' AND contraseña = '$contraseña'";
+                $result = $conexion->query($sql);
+        
+                if ($result->num_rows > 0) {
+                    $_SESSION['username'] = $usuario;  
+                    header("Location: dashboard.php");
+                    exit();
+                } else {
+                    echo "Usuario o contraseña incorrectos.";
+                }
+            } else {
+                echo "Por favor, completa ambos campos.";
+            }
+        }
+        $conexion->close();
+    ?>
 </body>
 </html>

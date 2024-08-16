@@ -1,9 +1,9 @@
 <?php
 session_start();
-include('db.php');
+include('conexion.php');
 
-$username = $_POST['usuario'];
-$password = $_POST['contraseña'];
+$usuario = $_POST["usuario"];
+$contraseña = $_POST["contraseña"];
 
 $sql = "SELECT * FROM usuarios WHERE usuario = '$usuario' AND contraseña = '$contraseña'";
 $result = $conexion->query($sql);
