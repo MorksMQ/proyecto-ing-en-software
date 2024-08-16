@@ -16,8 +16,9 @@
         <p>Usuario</p>
         <input name="usuario" id="usuario" type="text" placeholder="Nombre de usuario" required>
         <p>Contraseña</p>
-        <input name="contraseña" id="contraseña" type="text" placeholder="Ingresa tu contraseña" required><br>
+        <input name="contraseña" id="contraseña" type="password" placeholder="Ingresa tu contraseña" required><br>
         <input type="submit" value="Iniciar sesión">
+        <p>Todavía no tienes una cuenta?!</p> <a href="singup.php">¡Regístrate!</a>
     </form>
     
     <?php
