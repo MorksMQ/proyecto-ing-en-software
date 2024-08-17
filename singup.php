@@ -6,6 +6,10 @@
     <title>Document</title>
 </head>
 <body>
+    <header>
+
+    </header>
+    <main>
     <div>
 
     <form action="#" method="POST">
@@ -39,7 +43,6 @@
                     if ($contraseña !== $confirmar_contraseña) {
                         echo "Las contraseñas no coinciden. Inténtalo de nuevo.";
                     } else {
-                        $contraseña_hash = password_hash($contraseña, PASSWORD_BCRYPT);
 
                         $sql_check = "SELECT * FROM usuarios WHERE usuario = '$usuario' OR email = '$email'";
                         $result_check = $conexion->query($sql_check);
@@ -48,7 +51,7 @@
                             echo "El usuario o el correo electrónico ya están registrados.";
                         } else {
 
-                            $sql = "INSERT INTO usuarios (usuario, email, contraseña) VALUES ('$usuario', '$email', '$contraseña_hash')";
+                            $sql = "INSERT INTO usuarios (usuario, email, contraseña) VALUES ('$usuario', '$email', '$contraseña')";
 
                             if ($conexion->query($sql) === TRUE) {
                                 echo "Registro exitoso. Ahora puedes iniciar sesión.";
@@ -69,5 +72,9 @@
 
 
     </div>
+    </main>
+    <footer>
+        
+    </footer>
 </body>
 </html>
