@@ -12,7 +12,46 @@
 </head>
 <body>
     <header>
+        <div class="logo"><img src="imgs/logo.png" alt="aqui va el logo"></div>
+        <div class="buscador">
+        <form method="GET" action="busqueda.php">
+            <input type="text" name="query" placeholder="Buscar...">
+            <button type="submit"><img src="imgs/icon/busqueda.png" alt="Buscar"></button>
+        </form>
 
+        <?php
+            include('conexion.php');
+
+            if (isset($_GET['query'])) {
+                $query = $_GET['query'];
+
+                // Protección contra SQL injection
+                $query = $conexion->real_escape_string($query);
+
+                // Consulta SQL para buscar en la base de datos
+                $sql = "SELECT * FROM productos WHERE nombre LIKE '%$query%' OR descripcion LIKE '%$query%'";
+                $result = $conexion->query($sql);
+
+                if ($result->num_rows > 0) {
+                    // Redirigir a otra página si se encuentran resultados
+                    header("Location: busqueda.php?query=" . urlencode($query));
+                    exit();  
+                } else {
+                    // Redirigir a una página de "sin resultados"
+                    header("Location: errorbusqueda.php?query=" . urlencode($query));
+                    exit();
+                }
+            } else {
+                echo "Por favor, ingresa un término de búsqueda.";
+            }
+
+            $conexion->close();
+        ?>
+
+
+
+        </div>
+        <a class="boton" href="login.php">Ingresa ahora</a>
     </header>
     <main>
 

@@ -6,6 +6,10 @@
     <title>Document</title>
 </head>
 <body>
+    <header>
+
+    </header>
+    <main>
     <div class="login">
     <form action="#" method="POST">
         <p>Usuario</p>
@@ -17,30 +21,41 @@
     </form>
     
     <?php
-        session_start();
         include('conexion.php');
 
-        if ($_SERVER["REQUEST_METHOD"] == "POST") { 
-            if (isset($_POST['usuario']) && isset($_POST['contraseña'])) {  
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST['usuario']) && isset($_POST['contraseña'])) {
                 $usuario = $_POST['usuario'];
                 $contraseña = $_POST['contraseña'];
-        
-                $sql = "SELECT * FROM usuarios WHERE usuario = '$usuario' AND contraseña = '$contraseña'";
+
+                $sql = "SELECT * FROM usuarios WHERE usuario = '$usuario'";
                 $result = $conexion->query($sql);
-        
+
                 if ($result->num_rows > 0) {
-                    $_SESSION['username'] = $usuario;  
-                    header("Location: dashboard.php");
-                    exit();
+                    $row = $result->fetch_assoc();
+                    if (password_verify($contraseña, $row['contraseña'])) {
+                        echo "Inicio de sesión exitoso.";
+                        header("Location: dashboard.php");
+                        exit();
+                      
+                    } else {
+                        echo "Contraseña incorrecta. Inténtalo de nuevo.";
+                    }
                 } else {
-                    echo "Usuario o contraseña incorrectos.";
+                    echo "El usuario no existe.";
                 }
             } else {
-                echo "Por favor, completa ambos campos.";
+                echo "Por favor, completa todos los campos.";
             }
         }
+
         $conexion->close();
     ?>
+
     </div>
+    </main>
+    <footer>
+        
+    </footer>
 </body>
 </html>

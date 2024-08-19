@@ -27,48 +27,49 @@
 
         <input type="submit" value="Registrarse"><br>
 
-        <p>Ya tienes cuenta?</p> <a href="index.php">INICIA SESIÓN</a>
+        <p>Ya tienes cuenta?</p> <a href="login.php">INICIA SESIÓN</a>
     </form>
 
-        <?php
-            include('conexion.php');
+    <?php
+        include('conexion.php');
 
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                if (isset($_POST['usuario']) && isset($_POST['email']) && isset($_POST['contraseña']) && isset($_POST['confirmar_contraseña'])) {
-                    $usuario = $_POST['usuario'];
-                    $email = $_POST['email'];
-                    $contraseña = $_POST['contraseña'];
-                    $confirmar_contraseña = $_POST['confirmar_contraseña'];
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST['usuario']) && isset($_POST['email']) && isset($_POST['contraseña']) && isset($_POST['confirmar_contraseña'])) {
+                $usuario = $_POST['usuario'];
+                $email = $_POST['email'];
+                $contraseña = $_POST['contraseña'];
+                $confirmar_contraseña = $_POST['confirmar_contraseña'];
 
-                    if ($contraseña !== $confirmar_contraseña) {
-                        echo "Las contraseñas no coinciden. Inténtalo de nuevo.";
+                if ($contraseña !== $confirmar_contraseña) {
+                    echo "Las contraseñas no coinciden. Inténtalo de nuevo.";
+                } else {
+                    $contraseña_hash = password_hash($contraseña, PASSWORD_DEFAULT);
+
+                    $sql_check = "SELECT * FROM usuarios WHERE usuario = '$usuario' OR email = '$email'";
+                    $result_check = $conexion->query($sql_check);
+
+                    if ($result_check->num_rows > 0) {
+                        echo "El usuario o el correo electrónico ya están registrados.";
                     } else {
+                        $sql = "INSERT INTO usuarios (usuario, email, contraseña) VALUES ('$usuario', '$email', '$contraseña_hash')";
 
-                        $sql_check = "SELECT * FROM usuarios WHERE usuario = '$usuario' OR email = '$email'";
-                        $result_check = $conexion->query($sql_check);
-
-                        if ($result_check->num_rows > 0) {
-                            echo "El usuario o el correo electrónico ya están registrados.";
+                        if ($conexion->query($sql) === TRUE) {
+                            echo "Registro exitoso. Ahora puedes iniciar sesión.";
+                            header("Location: login.php");
+                            exit();
                         } else {
-
-                            $sql = "INSERT INTO usuarios (usuario, email, contraseña) VALUES ('$usuario', '$email', '$contraseña')";
-
-                            if ($conexion->query($sql) === TRUE) {
-                                echo "Registro exitoso. Ahora puedes iniciar sesión.";
-                                header("Location: index.php");
-                                exit();
-                            } else {
-                                echo "Error: " . $sql . "<br>" . $conexion->error;
-                            }
+                            echo "Error: " . $sql . "<br>" . $conexion->error;
                         }
                     }
-                } else {
-                    echo "Por favor, completa todos los campos.";
                 }
+            } else {
+                echo "Por favor, completa todos los campos.";
             }
+        }
 
-            $conexion->close();
-        ?>
+        $conexion->close();
+    ?>
+
 
 
     </div>

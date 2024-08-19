@@ -6,6 +6,14 @@
     <title>Document</title>
 </head>
 <body>
-    ya estas logeado
+    <header>
+
+    </header>
+    <main>
+     ya estas logeado   
+    </main>
+    <footer>
+        
+    </footer>
 </body>
 </html>
