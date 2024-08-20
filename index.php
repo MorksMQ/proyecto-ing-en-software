@@ -12,11 +12,18 @@
 </head>
 <body>
     <header>
-        <div class="logo"><img src="imgs/logo.png" alt="aqui va el logo"></div>
+        <div class="logo">
+            <img src="imgs/logo.png" alt="aqui va el logo">
+        </div>
+
         <div class="buscador">
         <form method="GET" action="busqueda.php">
-            <input type="text" name="query" placeholder="Buscar...">
-            <button type="submit"><img src="imgs/icon/busqueda.png" alt="Buscar"></button>
+            <div class="flex-row"><div>
+            <input class="buscador" type="text" name="query" placeholder="Buscar...">
+            </div>
+            <div>
+            <button type="submit"><img class="lupa" src="imgs/icon/busqueda.png" alt="Buscar"></button>
+            </div></div>
         </form>
 
         <?php
@@ -48,13 +55,33 @@
             $conexion->close();
         ?>
 
-
+        </div>
+        <div class="bloq1">
+        <div class="perfil">
+        <a class="boton" href="login.php">
+            <img src="imgs/icon/perfil.png" alt="login"></a>
+        </div>
+        <div class="carrito">
+            <a href="#">
+                <img src="imgs/icon/carrito.png" alt="carrito">
+            </a>
+        </div>
+        </div>
+    </header>
+    <nav>
+        <div>
 
         </div>
-        <a class="boton" href="login.php">Ingresa ahora</a>
-    </header>
+    </nav>
     <main>
+            <div class="heros-section">
+                <div>
 
+                </div>
+            </div>
+            <div class="bloq2">
+
+            </div>
     </main>
     <footer>
         
