@@ -13,7 +13,9 @@
 <body>
     <header>
         <div class="logo">
+            <a href="index.php">
             <img src="imgs/logo.png" alt="aqui va el logo">
+            </a>
         </div>
 
         <div class="buscador">
@@ -48,9 +50,9 @@
                     header("Location: errorbusqueda.php?query=" . urlencode($query));
                     exit();
                 }
-            } else {
+            } /*else {
                 echo "Por favor, ingresa un término de búsqueda.";
-            }
+            }*/
 
             $conexion->close();
         ?>

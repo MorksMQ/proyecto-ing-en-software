@@ -54,3 +54,35 @@ main{
     align-items: center;
     flex-direction: column;
 }
+
+
+
+.view1 {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+    margin-bottom: 20px; 
+}
+
+.view2 {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.view3 {
+    flex: 2; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.view3 h2, .view3 p {
+    margin: 5px 0; 
+}
+
+img.view4 {
+    max-width: 100px;
+    height: auto;
+    display: block; 
+}
+
