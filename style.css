@@ -11,14 +11,40 @@ header{
     align-items: center;
 
     margin-bottom: 25px;
+    max-width: 100%;
 }
 .bloq1{
     display: flex;
-    justify-content: space-between;
-    /*flex-direction: row;*/
+    justify-content: space-between; 
+    flex-direction: row;
     
-    width: 100px;
-    padding-right: 25px;
+    width: 250px;
+    padding-right: 35px;
+}
+.agregar{
+    display: flex;
+    align-items: center;
+}
+.perfil{
+    display: flex;
+    flex-direction: column;
+}
+.perfil1{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.perfil2{
+    margin-right: 10px;
+}
+.perfil3{
+    text-decoration: none;
+}
+.perfil p, .perfil3 h3{
+    margin: 0;
+}
+.perfil4{
+    font-size: 14px;
 }
 img.lupa{
     width: 25px;
@@ -29,6 +55,10 @@ input.buscador{
 
     margin: 0;
     padding: 0;
+}
+.carrito{
+    display: flex;
+    align-items: center;
 }
 .flex-row{
     display: flex;

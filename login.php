@@ -13,7 +13,7 @@
     <div class="login">
     <form action="#" method="POST">
         <p>Usuario</p>
-        <input name="usuario" id="usuario" type="text" placeholder="Nombre de usuario" required>
+        <input name="usuario" id="usuario" type="text" placeholder="Ingresa tu Usuario o Correo" required>
         <p>Contraseña</p>
         <input name="contraseña" id="contraseña" type="password" placeholder="Ingresa tu contraseña" required><br>
         <input type="submit" value="Iniciar sesión">
@@ -22,22 +22,35 @@
     
     <?php
         include('conexion.php');
+        session_start(); 
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST['usuario']) && isset($_POST['contraseña'])) {
                 $usuario = $_POST['usuario'];
                 $contraseña = $_POST['contraseña'];
 
-                $sql = "SELECT * FROM usuarios WHERE usuario = '$usuario'";
+                // Consulta SQL para verificar el usuario por nickname o correo
+                $sql = "SELECT * FROM usuarios WHERE (usuario = '$usuario' OR email = '$usuario')";
                 $result = $conexion->query($sql);
 
                 if ($result->num_rows > 0) {
                     $row = $result->fetch_assoc();
+
+                    // Verificar la contraseña
                     if (password_verify($contraseña, $row['contraseña'])) {
-                        echo "Inicio de sesión exitoso.";
-                        header("Location: dashboard.php");
+                        // Guardar datos del usuario en la sesión
+                        $_SESSION['usuario_id'] = $row['id'];
+                        $_SESSION['nombre'] = $row['nombre'];  
+                        $_SESSION['usuario'] = $row['usuario']; 
+                        $_SESSION['apellidos'] = $row['uapellidos'];
+                        $_SESSION['direccion'] = $row['direccion'];
+                        $_SESSION['fecha_de_nacimiento'] = $row['fecha_de_nacimiento'];
+                        $_SESSION['email'] = $row['email'];
+                        $_SESSION['rol'] = $row['rol'];
+
+                        // Redirigir al dashboard u otra página protegida
+                        header("Location: index.php");
                         exit();
-                      
                     } else {
                         echo "Contraseña incorrecta. Inténtalo de nuevo.";
                     }
@@ -51,6 +64,7 @@
 
         $conexion->close();
     ?>
+
 
     </div>
     </main>

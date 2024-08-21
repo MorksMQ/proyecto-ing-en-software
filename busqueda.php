@@ -70,7 +70,6 @@
                         echo "<p class='a3'><strong>Costo:</strong> $" . number_format($row['costo'], 2) . "</p>";
                         echo "</div>";
                         echo "</div>";
-                        echo "<hr>";
                         
                     }
                 } else {
