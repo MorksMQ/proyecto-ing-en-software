@@ -1,10 +1,13 @@
-html{
+html, body{
+    height: 100%;
+    margin: 0;
     font-family: "Montserrat", sans-serif;
 }
-body{
-    margin: 0;
+body.body1{
     padding-top: 10px;
 }
+
+/* header ==================================================*/
 header{
     display: flex;
     justify-content: space-between;
@@ -116,3 +119,118 @@ img.view4 {
     display: block; 
 }
 
+/* login ============================================ */
+
+.login3 {
+    display: flex;
+    justify-content: center;  /* Centra horizontalmente */
+    align-items: center;      /* Centra verticalmente */
+    height: 100vh;            /* Ocupa el 100% del viewport height */
+    background-color: #f4f4f4; /* Puedes cambiar el color de fondo si deseas */
+}
+
+.login {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px; /* Limita el ancho máximo */
+    text-align: center; /* Centra el texto dentro del formulario */
+}
+
+.login p {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.login input[type="text"],
+.login input[type="password"] {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.login input[type="submit"] {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.login input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.login a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.login a:hover {
+    text-decoration: underline;
+}
+
+/* register ========================================== */
+
+.singup3 {
+    display: flex;
+    justify-content: center;  
+    align-items: center;      
+    height: 150vh;         
+    background-color: #f4f4f4; 
+}
+
+.singup {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center; 
+}
+
+.singup p {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.singup input[type="text"],
+.singup input[type="password"],
+.singup input[type="email"],
+.singup input[type="date"] {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.singup input[type="submit"] {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.singup input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.singup a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.singup a:hover {
+    text-decoration: underline;
+}

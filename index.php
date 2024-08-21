@@ -44,7 +44,7 @@ $conexion->close();
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="body1">
     <header>
         <div class="logo">
             <a href="index.php">

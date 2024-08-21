@@ -31,10 +31,53 @@
         </div>
 
         <div class="bloq1">
-            <div class="perfil">
-                <a class="boton" href="login.php">
-                    <img src="imgs/icon/perfil.png" alt="login"></a>
+            <div class="agregar">
+            <?php
+                if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin') {
+                    echo "<style type='text/css'> .bloq1{width:300px;} </style>";
+                    echo "<a href='añadirproductos.php'><img src='imgs/icon/agregar.png'></a>";
+                } else {
+                    echo '';
+                }
+            ?>
             </div>
+                <?php
+                    if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin') {
+                        echo "<hr>";
+                    } else {
+                        echo '';
+                    }
+                ?>
+            <div class="perfil">
+                <?php
+                if (isset($_SESSION['usuario'])) {
+                    echo "<div class='perfil1'>";
+                    echo "<div class='perfil2'>";
+                    echo "<img src='imgs/icon/perfil.png'>";
+                    echo "</div>";
+                    echo "<div class='perfil3'>";
+                    echo "<p>Hola, </p>";
+                    echo "<h3>" . $_SESSION['nombre'] . "!</h3>";
+                    echo "<a class='perfil4' href='logout.php'>Cerrar sesión</a>";
+                    echo "</div>";
+                    echo "</div>";
+                } else {
+                    echo "<a class='perfil3' href='login.php'>";
+                    echo "<div class='perfil1'>";
+                    echo "<div class='perfil2'>";
+                    echo "<img src='imgs/icon/perfil.png'>";
+                    echo "</div>";
+                    echo "<div>";
+                    echo "Bienvenido!";
+                    echo "<br>";
+                    echo "<p><strong>Inicia sesión</strong></p>";
+                    echo "</div>";
+                    echo "</div>";
+                    echo "</a>";
+                }
+                ?>
+            </div>
+                <hr>
             <div class="carrito">
                 <a href="#">
                     <img src="imgs/icon/carrito.png" alt="carrito">
