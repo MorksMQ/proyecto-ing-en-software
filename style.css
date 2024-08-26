@@ -1,3 +1,5 @@
+/* Defauld ==================================================*/
+
 html, body{
     height: 100%;
     margin: 0;
@@ -6,6 +8,13 @@ html, body{
 body.body1{
     padding-top: 10px;
 }
+
+main{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+/* ======================================================= */
 
 /* header ==================================================*/
 header{
@@ -63,15 +72,20 @@ input.buscador{
     display: flex;
     align-items: center;
 }
-.flex-row{
+/* .flex-row{
     display: flex;
     flex-direction: row;
-}
+} */
 nav{
     height: 40px;
     width: 100%;
     background-color: cadetblue;
 }
+
+/* ======================================================= */
+
+/* index ============================================== */
+
 .heros-section{
     height: 235px;
     border-bottom: 1px #fff;
@@ -82,51 +96,17 @@ nav{
     height: 250px;
     width: 95%;
 }
-main{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
 
-
-
-.view1 {
-    display: flex;
-    flex-wrap: wrap; 
-    justify-content: space-between; 
-    margin-bottom: 20px; 
-}
-
-.view2 {
-    flex: 1;
-    margin-right: 20px;
-}
-
-.view3 {
-    flex: 2; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.view3 h2, .view3 p {
-    margin: 5px 0; 
-}
-
-img.view4 {
-    max-width: 100px;
-    height: auto;
-    display: block; 
-}
+/* ======================================================= */
 
 /* login ============================================ */
 
 .login3 {
     display: flex;
-    justify-content: center;  /* Centra horizontalmente */
-    align-items: center;      /* Centra verticalmente */
-    height: 100vh;            /* Ocupa el 100% del viewport height */
-    background-color: #f4f4f4; /* Puedes cambiar el color de fondo si deseas */
+    justify-content: center;  
+    align-items: center;      
+    height: 100vh;            
+    background-color: #f4f4f4; 
 }
 
 .login {
@@ -135,8 +115,8 @@ img.view4 {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 400px; /* Limita el ancho máximo */
-    text-align: center; /* Centra el texto dentro del formulario */
+    max-width: 400px; 
+    text-align: center; 
 }
 
 .login p {
@@ -175,6 +155,7 @@ img.view4 {
 .login a:hover {
     text-decoration: underline;
 }
+/* ======================================================= */
 
 /* register ========================================== */
 
@@ -234,3 +215,174 @@ img.view4 {
 .singup a:hover {
     text-decoration: underline;
 }
+
+/* ======================================================= */
+
+/* buscador ============================================== */
+
+section.sect1{
+    max-width: 20%;
+    height: 100%;
+}
+
+section.sect2{
+    max-width: 80%;
+
+    display: flex;
+    justify-content: center;
+}
+
+.view1 {
+    display: flex;
+    justify-content: left;
+    margin-bottom: 20px; 
+}
+
+.view2 {
+    margin-right: 20px;
+}
+
+.view3 {
+    flex: 2; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.view3 h2, .view3 p {
+    margin: 5px 0; 
+}
+
+img.view4 {
+    max-width: 100px;
+    height: auto;
+    display: block; 
+}
+/* ======================================================= */
+
+/* recursos universales ============================================== */
+
+.flex{
+    display: flex;
+}
+
+.flex-row{
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-wrap{
+    flex-wrap: wrap;
+}
+
+.justify-center{
+    justify-content: center;
+}
+
+.justify-between{
+    justify-content: space-between;
+}
+
+.justify-around{
+    justify-content: space-around;
+}
+
+.width100{
+    width: 100%;
+}
+/* ======================================================= */
+
+/* tarjetas de productos ============================================== */
+
+.productos-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.producto-tarjeta {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background-color: #fff;
+}
+
+.producto-tarjeta img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.producto-tarjeta h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.producto-tarjeta p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.boton1 {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #007bff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.boton1:hover {
+    background-color: #0056b3;
+}
+
+.boton2 {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    color: #fff;
+    background-color: #ff8800;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.boton2:hover {
+    background-color: #c56900;
+}
+
+.boton3 {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    width: fit-content;
+    padding: 3px;
+    background-color: #f52727;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.boton3:hover {
+    background-color: #b30000;
+}
+
+.botones1{
+    display: flex;
+    flex-direction: row;
+}
+/* ======================================================= */
+
+/* (separador) ============================================== */
+
+
+
+/* ======================================================= */

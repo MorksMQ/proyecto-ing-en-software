@@ -7,7 +7,9 @@
 session_start(); 
 
 include('conexion.php');
+?>
 
+<?php
 // Verifica si hay una búsqueda activa
 if (isset($_GET['query'])) {
     $query = $_GET['query'];
@@ -110,6 +112,8 @@ $conexion->close();
                     echo "</div>";
                     echo "</a>";
                 }
+
+            
                 ?>
             </div>
                 <hr>
@@ -129,7 +133,41 @@ $conexion->close();
         <div class="heros-section">
             <div></div>
         </div>
-        <div class="bloq2"></div>
+        <div class="bloq2">
+        <?php
+            include('conexion.php');
+
+            $sql = "SELECT id_producto, nombre, costo, imagen FROM productos";
+            $result = $conexion->query($sql);
+
+            if ($result->num_rows > 0) {
+                echo "<div class='productos-container'>";
+                while ($row = $result->fetch_assoc()) {
+                    echo "<div class='producto-tarjeta'>";
+                    echo "<img class='view4' src='data:image/jpeg;base64," . base64_encode($row['imagen']) . "' alt='" . $row['nombre'] . "'>";
+                    echo "<h2>" . $row['nombre'] . "</h2>";
+                    echo "<p><strong>Costo:</strong> $" . number_format($row['costo'], 2) . "</p>";
+                    echo "<a href='producto.php?id=" . $row['id_producto'] . "' class='boton1'>Ver Producto</a>";
+                    if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin') {
+                        echo "<div class='botones1'>";
+                        echo "<a href='editarproducto.php?id=" . $row['id_producto'] . "' class='boton2'><img src='imgs/icon/editar.png'></a>";
+                        echo "<a href='eliminarproducto.php?id=" . $row['id_producto'] . "' class='boton3'><img src='imgs/icon/eliminar.png'></a>";
+                        echo "</div>";
+                    } else {
+                        echo "";
+                    }
+
+                    echo "</div>";
+                }                
+                echo "</div>";
+            } else {
+                echo "No hay productos disponibles.";   
+            }
+
+            $conexion->close();
+        ?>
+
+        </div>
     </main>
 
     <footer></footer>

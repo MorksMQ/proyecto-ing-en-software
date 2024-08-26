@@ -1,3 +1,8 @@
+<?php
+    session_start();
+
+    include('conexion.php');
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="body1">
     <header>
         <div class="logo">
             <a href="index.php">
@@ -85,46 +90,60 @@
             </div>
         </div>
     </header>
+    <nav>
+        <div>
 
-    <main>
-        <div class="view1">
-            <?php
-            include('conexion.php');
+        </div>
+    </nav>
+    <main class="flex-row flex-wrap justify-around">
+        <section class="sec1">
+            <div class="buscador1">
+                <p>soy un sidebar</p>
+                <p>y estoy a la izquierda</p>
+            </div>
+        </section> 
+        <section class="sect2">
+            <div class="view1">
+                <?php
 
-            if (isset($_GET['query'])) {
-                $query = $_GET['query'];
+                if (isset($_GET['query'])) {
+                    $query = $_GET['query'];
 
-                // Protección contra SQL injection
-                $query = $conexion->real_escape_string($query);
+                    // Protección contra SQL injection
+                    $query = $conexion->real_escape_string($query);
 
-                // Consulta SQL para buscar en la base de datos
-                $sql = "SELECT nombre, descripcion, imagen, costo FROM productos WHERE nombre LIKE '%$query%' OR descripcion LIKE '%$query%'";
-                $result = $conexion->query($sql);
+                    // Consulta SQL para buscar en la base de datos
+                    $sql = "SELECT nombre, descripcion, imagen, costo FROM productos WHERE nombre LIKE '%$query%' OR descripcion LIKE '%$query%'";
+                    $result = $conexion->query($sql);
 
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<div class='view1'>";
-                        echo "<div class='view2'>";
-                        echo "<img class='view4' src='imgs/productos/" . $row['imagen'] . "' alt='" . $row['nombre'] . "'>";
-                        echo "</div>";
-                        echo "<div class='view3'>";
-                        echo "<h2 class='a1'>" . $row['nombre'] . "</h2>";
-                        echo "<p class='a2'>" . $row['descripcion'] . "</p>";
-                        echo "<p class='a3'><strong>Costo:</strong> $" . number_format($row['costo'], 2) . "</p>";
-                        echo "</div>";
-                        echo "</div>";
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<div class='view1'>";
+                            echo "<div class='view2'>";
+                            // Convertir el BLOB a una imagen base64
+                            $imagen_base64 = base64_encode($row['imagen']);
+                            $tipo_imagen = 'image/jpeg'; 
+                            echo "<img class='view4' src='data:$tipo_imagen;base64,$imagen_base64' alt='" . $row['nombre'] . "'>";
+                            echo "</div>";
+                            echo "<div class='view3'>";
+                            echo "<h2 class='a1'>" . $row['nombre'] . "</h2>";
+                            echo "<p class='a2'>" . $row['descripcion'] . "</p>";
+                            echo "<p class='a3'><strong>Costo:</strong> $" . number_format($row['costo'], 2) . "</p>";
+                            echo "</div>";
+                            echo "</div>";
+                        }
                         
+                    } else {
+                        echo "No se encontraron resultados para '$query'.";
                     }
                 } else {
-                    echo "No se encontraron resultados para '$query'.";
+                    echo "Por favor, ingresa un término de búsqueda.";
                 }
-            } else {
-                echo "Por favor, ingresa un término de búsqueda.";
-            }
 
-            $conexion->close();
-            ?>
-        </div>
+                $conexion->close();
+                ?>
+            </div>
+        </section>
     </main>
     
     <footer>
